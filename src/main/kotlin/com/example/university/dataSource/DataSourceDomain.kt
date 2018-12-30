@@ -1,6 +1,8 @@
 package com.example.university.dataSource
 
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
 import javax.persistence.Id
 
 
@@ -20,17 +22,45 @@ data class DataSourceFeild(
 /**
  * 数据源信息，包括，数据源名称，有多少记录，有多少字段，数据库的来源等
  */
+////@Entity
+//class DataSource {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    val id: Long? = null
+//    var name: String=""//数据名称
+//    var recoourdnum: String = ""//记录count
+//    //    var feildNum: String = ""//字段count
+//    //    var fromSource: String = ""//数据库来源
+//    //    var associatTask: String = ""
+//    var area: String=""
+//
+//    protected constructor() {}
+//    constructor(name: String, area: String) {
+//        this.name = name
+//        this.area = area
+//    }
+//}
+
 @Entity
-data class DataSource(
-        @Id
-        var id: Long,
-        var name: String,//数据名称
-        var recordNum: String,//记录count
-        var feildNum: String,//字段count
-        var fromSource: String,//数据库来源
-        var associatTask: String,
-        var Area:String
-)
+class DataSource {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    val id: Long? = null
+    var name: String = ""
+    var area: String = ""
+
+    protected constructor() {}
+    constructor(name: String, area: String) {
+        this.name = name
+        this.area = area
+    }
+
+    override fun toString(): String {
+        return "DataSource(id=$id, name='$name', area='$area')"
+    }
+
+}
+
 
 /**
  * 数据库层，只做存储，不做计算运算，所有所有数据都存为string类型

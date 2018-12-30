@@ -19,12 +19,12 @@ class DataSouceRepositoryIntegration {
 
     @Test
     fun `thes insert into database`() {
-        dsRepository.save(DataSource(1, "iris", "400", "4", "university", "classification", "life"))
-        dsRepository.save(DataSource(2, "iris", "400", "4", "university", "classification", "life"))
-        dsRepository.save(DataSource(3, "iris", "400", "4", "university", "classification", "life"))
-        dsRepository.save(DataSource(4, "iris", "400", "4", "university", "classification", "life"))
-        dsRepository.save(DataSource(5, "iris", "400", "4", "university", "classification", "life"))
-        dsRepository.save(DataSource(6, "iris", "400", "4", "university", "classification", "life"))
+        dsRepository.save(DataSource("iris", "life"))
+        dsRepository.save(DataSource("iris", "life"))
+        dsRepository.save(DataSource("iris", "life22"))
+        dsRepository.save(DataSource("iris", "lifexx"))
+        dsRepository.save(DataSource("iris", "life66"))
+        dsRepository.save(DataSource("iris", "life"))
 
 
         assertThat(true).isEqualTo(true)
@@ -48,5 +48,26 @@ class DataSouceRepositoryIntegration {
     }
 
 
+    @Test
+    fun `count all by area`() {
+
+    }
+
+    @Test
+    fun `find by name demo`() {
+        val rs = dsRepository.findByName("iris")!!
+        rs.map {
+            assertThat(it.name).isEqualTo("iris")
+            logger.info(it)
+        }
+    }
+
+    @Test
+    fun `find by area`() {
+        val rs = dsRepository.findByArea("life")!!
+        rs.map {
+            logger.info(it)
+        }
+    }
 
 }
